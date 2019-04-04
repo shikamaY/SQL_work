@@ -1,15 +1,52 @@
 書籍情報テーブル(books)から価格が2500～3500円の範囲の書籍を価格が安い順に取り出してみましょう。
 取り出す列は,title、price列とします。
 
+-- 取得命令
 SELECT
+-- 書籍名カラム
 	title,
+-- 値段カラム
 	price
+-- 取得元
 FROM
+-- 書籍テーブル
 	books
+-- 取得条件
 WHERE
-	
+-- 価格が2500～3500
+	price BETWEEN 2500 AND 3500
+-- 昇順でソート	
 ORDER BY
+-- 価格
+	price ASC
 ;
+
+postgres=# SELECT
+postgres-# -- 書籍名カラム
+postgres-#      title,
+postgres-# -- 値段カラム
+postgres-#      price
+postgres-# -- 取得元
+postgres-# FROM
+postgres-# -- 書籍テーブル
+postgres-#      books
+postgres-# -- 取得条件
+postgres-# WHERE
+postgres-# -- 価格が2500～3500
+postgres-#      price BETWEEN 2500 AND 3500
+postgres-# -- 昇順でソート
+postgres-# ORDER BY
+postgres-# -- 価格
+postgres-#      price ASC
+postgres-# ;
+      title      | price
+-----------------+-------
+ SQLリファレンス |  2500
+ PEAR入門        |  3000
+ PHP5サンプル集  |  3000
+ XMLリファレンス |  3200
+ XML辞典         |  3300
+(5 行)
 
 テーブル全量
 postgres=# SELECT * FROM books;
