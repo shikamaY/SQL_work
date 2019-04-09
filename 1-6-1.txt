@@ -11,11 +11,11 @@ FROM
 	quest
 -- 取得条件
 WHERE
--- 年齢が20以上
+-- 年齢が20～29歳
 	age BETWEEN 20 AND 29
 -- かつ	
 	AND
--- 年齢が30未満
+-- 性別が女
 	sex = '女'
 ;
 
@@ -29,11 +29,11 @@ postgres-# -- アンケート回答テーブル
 postgres-#      quest
 postgres-# -- 取得条件
 postgres-# WHERE
-postgres-# -- 年齢が20以上
+postgres-# -- 年齢が20～29歳
 postgres-#      age BETWEEN 20 AND 29
 postgres-# -- かつ
 postgres-#      AND
-postgres-# -- 年齢が30未満
+postgres-# -- 性別が女
 postgres-#      sex = '女'
 postgres-# ;
  id |   name   |   name_kana    | sex | prefecture | age | answer1 |       answer2        |      answered
@@ -41,6 +41,7 @@ postgres-# ;
   2 | 井上茉莉 | イノウエマリ   | 女  | 神奈川県   |  25 |       2 | 面白いです。         | 2012-10-16 07:15:14
   3 | 上原遥   | ウエハラハルカ | 女  | 茨城県     |  26 |       1 | ちょっと難しいです。 | 2012-10-18 20:11:12
 (2 行)
+
 
 テーブル全量
 postgres=# SELECT * FROM quest;

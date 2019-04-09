@@ -20,7 +20,7 @@ WHERE
 -- かつ	
 	AND
 -- アドレスにexamples.comが含まれている
-	email like '%examples.com'
+	email like '%@examples.com'
 ;
 
 postgres=# -- 取得命令
@@ -42,13 +42,15 @@ postgres-#      prefecture = '東京都'
 postgres-# -- かつ
 postgres-#      AND
 postgres-# -- アドレスにexamples.comが含まれている
-postgres-#      email like '%examples.com'
+postgres-#      email like '%@examples.com'
 postgres-# ;
  l_name | f_name |      email
 --------+--------+------------------
  小野   | 雄二   | ono@examples.com
 (1 行)
 
+
+postgres=#
 テーブル全量
 postgres=# SELECT * FROM usr;
  user_id | l_name | f_name | l_name_kana | f_name_kana | prefecture |     city     | o_address |     tel      |         email
