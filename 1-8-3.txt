@@ -21,7 +21,7 @@ WHERE
 -- ソート
 ORDER BY
 -- 貸出日が古い順
-	rental_date
+	rental_date ASC
 -- 取得件数
 LIMIT
 -- 5件
@@ -48,7 +48,7 @@ postgres-#      returned=0
 postgres-# -- ソート
 postgres-# ORDER BY
 postgres-# -- 貸出日が古い順
-postgres-#      rental_date
+postgres-#      rental_date ASC
 postgres-# -- 取得件数
 postgres-# LIMIT
 postgres-# -- 5件
