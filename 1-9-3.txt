@@ -1,0 +1,59 @@
+月間売り上げテーブル(sales)で、店舗別の累計売り上げ高を算出するためのSQL命令を記述してみましょう。
+
+-- 取得命令
+SELECT
+-- 店舗ID
+	s_id,
+-- 売り上げ合計
+	SUM(s_value)
+-- 取得元
+FROM
+-- 月間売り上げテーブル
+	sales
+-- グループ化
+GROUP BY
+-- 店舗ID
+	s_id
+;
+
+postgres=# -- 取得命令
+postgres=# SELECT
+postgres-# -- 店舗ID
+postgres-#      s_id,
+postgres-# -- 売り上げ合計
+postgres-#      SUM(s_value)
+postgres-# -- 取得元
+postgres-# FROM
+postgres-# -- 月間売り上げテーブル
+postgres-#      sales
+postgres-# -- グループ化
+postgres-# GROUP BY
+postgres-# -- 店舗ID
+postgres-#      s_id
+postgres-# ;
+ s_id  |  sum
+-------+-------
+ K0002 | 20580
+ N0001 | 20988
+ M0002 | 12032
+ K0001 | 21376
+ M0001 | 21929
+ H0001 | 19836
+(6 行)
+
+テーブル全量
+postgres=# SELECT * FROM sales;
+ s_id  | s_date  | s_value
+-------+---------+---------
+ M0001 | 2012-12 |   11145
+ H0001 | 2012-12 |    9861
+ N0001 | 2012-12 |   11023
+ K0001 | 2012-12 |   11234
+ K0002 | 2012-12 |   10456
+ M0001 | 2012-11 |   10784
+ M0002 | 2012-11 |   12032
+ H0001 | 2012-11 |    9975
+ N0001 | 2012-11 |    9965
+ K0001 | 2012-11 |   10142
+ K0002 | 2012-11 |   10124
+(11 行)
