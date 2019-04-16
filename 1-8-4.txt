@@ -1,8 +1,8 @@
-ˆÈ‰º‚ÍAƒAƒNƒZƒX‹L˜^ƒe[ƒuƒ‹(access_log)‚©‚çƒAƒNƒZƒX“ú‚ÌV‚µ‚¢‡‚É10Œ‚ÌƒƒOƒf[ƒ^‚ğæ“¾‚·‚é‚½‚ß‚ÌA
-SQL–½—ß‚Å‚·A(æ“¾—ñ‚Ípage_id,referer,ip_address)‚ªA
-2“_Œë‚è‚ª‚ ‚è‚Ü‚·BŒë‚è‚ğw“E‚µ‚Ä‚­‚¾‚³‚¢
+ä»¥ä¸‹ã¯ã€ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«(access_log)ã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚¹æ—¥æ™‚ã®æ–°ã—ã„é †ã«10ä»¶ã®ãƒ­ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ã€
+SQLå‘½ä»¤ã§ã™ã€(å–å¾—åˆ—ã¯page_id,referer,ip_address)ãŒã€
+2ç‚¹èª¤ã‚ŠãŒã‚ã‚Šã¾ã™ã€‚èª¤ã‚Šã‚’æŒ‡æ‘˜ã—ã¦ãã ã•ã„ã€‚
 
-–â‘è
+å•é¡Œ
 SELECT
 	page_id,
 	referer,
@@ -15,48 +15,48 @@ LIMIT
 	10 OFFSET 0
 ;
 
-‰ñ“š
--- æ“¾–½—ß
+å›ç­”
+-- å–å¾—å‘½ä»¤
 SELECT
--- ƒy[ƒWIDƒJƒ‰ƒ€
+-- ãƒšãƒ¼ã‚¸IDã‚«ãƒ©ãƒ 
 	page_id,
--- URLƒJƒ‰ƒ€
+-- URLã‚«ãƒ©ãƒ 
 	referer,
--- IPƒAƒhƒŒƒXƒJƒ‰ƒ€
+-- IPã‚¢ãƒ‰ãƒ¬ã‚¹ã‚«ãƒ©ãƒ 
 	ip_address
--- æ“¾Œ³
+-- å–å¾—å…ƒ
 FROM
--- ƒAƒNƒZƒX‹L˜^ƒe[ƒuƒ‹
+-- ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
 	access_log
--- ƒ\[ƒg
+-- ã‚½ãƒ¼ãƒˆ
 ORDER BY
--- ƒAƒNƒZƒX“ú‚ªV‚µ‚¢
+-- ã‚¢ã‚¯ã‚»ã‚¹æ—¥æ™‚ãŒæ–°ã—ã„
 	access_date DESC
--- æ“¾Œ”
+-- å–å¾—ä»¶æ•°
 LIMIT
--- 1s–Ú‚©‚ç10Œ
+-- 1è¡Œç›®ã‹ã‚‰10ä»¶
 	10 OFFSET 0
 ;
 
-postgres=# -- æ“¾–½—ß
+postgres=# -- å–å¾—å‘½ä»¤
 postgres=# SELECT
-postgres-# -- ƒy[ƒWIDƒJƒ‰ƒ€
+postgres-# -- ãƒšãƒ¼ã‚¸IDã‚«ãƒ©ãƒ 
 postgres-#      page_id,
-postgres-# -- URLƒJƒ‰ƒ€
+postgres-# -- URLã‚«ãƒ©ãƒ 
 postgres-#      referer,
-postgres-# -- IPƒAƒhƒŒƒXƒJƒ‰ƒ€
+postgres-# -- IPã‚¢ãƒ‰ãƒ¬ã‚¹ã‚«ãƒ©ãƒ 
 postgres-#      ip_address
-postgres-# -- æ“¾Œ³
+postgres-# -- å–å¾—å…ƒ
 postgres-# FROM
-postgres-# -- ƒAƒNƒZƒX‹L˜^ƒe[ƒuƒ‹
+postgres-# -- ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
 postgres-#      access_log
-postgres-# -- ƒ\[ƒg
+postgres-# -- ã‚½ãƒ¼ãƒˆ
 postgres-# ORDER BY
-postgres-# -- ƒAƒNƒZƒX“ú‚ªV‚µ‚¢
+postgres-# -- ã‚¢ã‚¯ã‚»ã‚¹æ—¥æ™‚ãŒæ–°ã—ã„
 postgres-#      access_date DESC
-postgres-# -- æ“¾Œ”
+postgres-# -- å–å¾—ä»¶æ•°
 postgres-# LIMIT
-postgres-# -- 1s–Ú‚©‚ç10Œ
+postgres-# -- 1è¡Œç›®ã‹ã‚‰10ä»¶
 postgres-#      10 OFFSET 0
 postgres-# ;
  page_id |          referer          |   ip_address
@@ -71,9 +71,9 @@ postgres-# ;
  A0001   | http://wings.msn.to/hamu/ | 192.168.16.115
  C0001   | http://wings.msn.to/hamu/ | 192.168.32.14
  A0001   | http://wings.msn.to/hamu/ | 192.168.13.16
-(10 s)
+(10 è¡Œ)
 
-ƒe[ƒuƒ‹‘S—Ê
+ãƒ†ãƒ¼ãƒ–ãƒ«å…¨é‡
 postgres=# SELECT * FROM access_log;
  log_id | page_id |          referer          |   ip_address    |     access_date
 --------+---------+---------------------------+-----------------+---------------------
@@ -203,4 +203,4 @@ postgres=# SELECT * FROM access_log;
     124 | C0004   | http://wings.msn.to/kame/ | 192.168.206.132 | 2013-01-05 13:16:12
     125 | C0005   | http://wings.msn.to/neko/ | 192.168.211.109 | 2013-01-05 17:18:19
     126 | C0001   | http://wings.msn.to/hamu/ | 192.168.165.19  | 2013-01-05 20:18:19
-(126 s)
+(126 è¡Œ)
