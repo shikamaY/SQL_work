@@ -1,0 +1,71 @@
+商品テーブル(product)からp_name,price列を価格が安い順に取り出してみましょう。
+その際、p_name列に「商品名」,price列に「価格」という別名をつけます。
+以下の空欄を埋めてSQL命令を完成させてください。
+
+問題
+SELECT
+	①,
+	②
+FROM
+	product
+ORDER BY
+	price ASC
+;
+
+回答
+--　取得命令
+SELECT
+-- 商品名のカラム名を日本語で表示
+	p_name AS 商品名,
+-- 価格名のカラム名を日本語で表示
+	price AS 価格
+-- 取得元
+FROM
+-- 商品テーブル
+	product
+-- ソート
+ORDER BY
+-- 価格が安い順
+	price ASC
+;
+
+postgres=# --　取得命令
+postgres=# SELECT
+postgres-# -- 商品名カラムを日本語名で表示
+postgres-#      p_name AS 商品名,
+postgres-# -- 価格名カラムを日本語名で表示
+postgres-#      price AS 価格
+postgres-# -- 取得元
+postgres-# FROM
+postgres-# -- 商品テーブル
+postgres-#      product
+postgres-# -- ソート
+postgres-# ORDER BY
+postgres-# -- 価格が安い順
+postgres-#      price ASC
+postgres-# ;
+    商品名    | 価格
+--------------+-------
+ 赤ボールペン |   100
+ 黒ボールペン |   100
+ 電卓         |   600
+ トナー赤     |  1000
+ トナー黒     |  1000
+ マウスパッド |  1500
+ 椅子         | 10000
+ 机           | 15000
+(8 行)
+
+テーブル全量
+postgres=# SELECT * FROM product;
+    p_id    |    p_name    | price
+------------+--------------+-------
+ PB00000001 | 黒ボールペン |   100
+ PB00000002 | 赤ボールペン |   100
+ DE00000001 | 電卓         |   600
+ TO00000001 | トナー黒     |  1000
+ TO00000002 | トナー赤     |  1000
+ TU00000001 | 机           | 15000
+ IS00000001 | 椅子         | 10000
+ MA00000001 | マウスパッド |  1500
+(8 行)
