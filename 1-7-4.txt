@@ -1,8 +1,8 @@
-ˆÈ‰º‚ÍAƒAƒNƒZƒX‹L˜^ƒe[ƒuƒ‹(access_log)‚©‚ç2013”N1Œ•ª‚ÌƒAƒNƒZƒXƒƒO‚ğ
-refrere,ip_address—ñ‚É‚Â‚¢‚Ä~‡‚Åæ‚èo‚·‚½‚ß‚ÌSQL–½—ß‚Å‚·‚ªA2“_Œë‚è‚ª‚ ‚è‚Ü‚·B
-Œë‚è‚ğw“E‚µ‚Ä‚­‚¾‚³‚¢B
+ä»¥ä¸‹ã¯ã€ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«(access_log)ã‹ã‚‰2013å¹´1æœˆåˆ†ã®ã‚¢ã‚¯ã‚»ã‚¹ãƒ­ã‚°ã‚’
+refrere,ip_addressåˆ—ã«ã¤ã„ã¦é™é †ã§å–ã‚Šå‡ºã™ãŸã‚ã®SQLå‘½ä»¤ã§ã™ãŒã€2ç‚¹èª¤ã‚ŠãŒã‚ã‚Šã¾ã™ã€‚
+èª¤ã‚Šã‚’æŒ‡æ‘˜ã—ã¦ãã ã•ã„ã€‚
 
-–â‘è
+å•é¡Œ
 SELECT
 	*
 FROM
@@ -13,44 +13,44 @@ ORDER BY
 	referer,ip_address DESC
 ;
 
-‰ñ“š
--- æ“¾–½—ß
+å›ç­”
+-- å–å¾—å‘½ä»¤
 SELECT
--- ‘SƒJƒ‰ƒ€
+-- å…¨ã‚«ãƒ©ãƒ 
 	*
--- æ“¾Œ³
+-- å–å¾—å…ƒ
 FROM
--- ƒAƒNƒZƒX‹L˜^ƒe[ƒuƒ‹
+-- ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
 	access_log
--- æ“¾ğŒ
+-- å–å¾—æ¡ä»¶
 WHERE
--- ƒAƒNƒZƒX‹L˜^‚ª2013-01-01‚©‚ç2013-01-31
+-- ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãŒ2013-01-01ã‹ã‚‰2013-01-31
 	access_date BETWEEN '2013-01-01' AND '2013-01-31'
--- ƒ\[ƒg
+-- ã‚½ãƒ¼ãƒˆ
 ORDER BY
--- URL‚ğ~‡
+-- URLã‚’é™é †
 	referer DESC,
--- IPƒAƒhƒŒƒX‚ğ~‡
+-- IPã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’é™é †
 	ip_address DESC
 ;
 
-postgres=# -- æ“¾–½—ß
+postgres=# -- å–å¾—å‘½ä»¤
 postgres=# SELECT
-postgres-# -- ‘SƒJƒ‰ƒ€
+postgres-# -- å…¨ã‚«ãƒ©ãƒ 
 postgres-#      *
-postgres-# -- æ“¾Œ³
+postgres-# -- å–å¾—å…ƒ
 postgres-# FROM
-postgres-# -- ƒAƒNƒZƒX‹L˜^ƒe[ƒuƒ‹
+postgres-# -- ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
 postgres-#      access_log
-postgres-# -- æ“¾ğŒ
+postgres-# -- å–å¾—æ¡ä»¶
 postgres-# WHERE
-postgres-# -- ƒAƒNƒZƒX‹L˜^‚ª2013-01-01‚©‚ç2013-01-31
+postgres-# -- ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãŒ2013-01-01ã‹ã‚‰2013-01-31
 postgres-#      access_date BETWEEN '2013-01-01' AND '2013-01-31'
-postgres-# -- ƒ\[ƒg
+postgres-# -- ã‚½ãƒ¼ãƒˆ
 postgres-# ORDER BY
-postgres-# -- URL‚ğ~‡
+postgres-# -- URLã‚’é™é †
 postgres-#      referer DESC,
-postgres-# -- IPƒAƒhƒŒƒX‚ğ~‡
+postgres-# -- IPã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’é™é †
 postgres-#      ip_address DESC
 postgres-# ;
  log_id | page_id |          referer          |   ip_address    |     access_date
@@ -67,9 +67,9 @@ postgres-# ;
     123 | A0001   | http://wings.msn.to/hamu/ | 192.168.16.198  | 2013-01-05 11:16:12
     119 | A0001   | http://wings.msn.to/hamu/ | 192.168.16.115  | 2013-01-02 07:11:17
     117 | A0001   | http://wings.msn.to/hamu/ | 192.168.13.16   | 2013-01-01 22:25:12
-(12 s)
+(12 è¡Œ)
 
-ƒe[ƒuƒ‹‘S—Ê
+ãƒ†ãƒ¼ãƒ–ãƒ«å…¨é‡
 postgres=# SELECT * FROM access_log;
  log_id | page_id |          referer          |   ip_address    |     access_date
 --------+---------+---------------------------+-----------------+---------------------
@@ -199,4 +199,4 @@ postgres=# SELECT * FROM access_log;
     124 | C0004   | http://wings.msn.to/kame/ | 192.168.206.132 | 2013-01-05 13:16:12
     125 | C0005   | http://wings.msn.to/neko/ | 192.168.211.109 | 2013-01-05 17:18:19
     126 | C0001   | http://wings.msn.to/hamu/ | 192.168.165.19  | 2013-01-05 20:18:19
-(126 s)
+(126 è¡Œ)

@@ -1,47 +1,47 @@
-‘Ý‚µo‚µ‹L˜^ƒe[ƒuƒ‹irental)‚©‚ç–¢•Ô‹p‚ÅA‘Ýo“ú‚ª2012”N12ŒŽ1“ú‚æ‚è‘O‚Ì‘Ý‚µo‚µî•ñ‚ðA
-‘Ýo“ú‚ªV‚µ‚¢‡‚É’Šo‚µ‚Ä‚Ý‚Ü‚µ‚å‚¤B’Šo‚·‚é‘ÎÛ—ñ‚Í‘S—ñ‚Æ‚µ‚Ü‚·B
+è²¸ã—å‡ºã—è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆrental)ã‹ã‚‰æœªè¿”å´ã§ã€è²¸å‡ºæ—¥ãŒ2012å¹´12æœˆ1æ—¥ã‚ˆã‚Šå‰ã®è²¸ã—å‡ºã—æƒ…å ±ã‚’ã€
+è²¸å‡ºæ—¥ãŒæ–°ã—ã„é †ã«æŠ½å‡ºã—ã¦ã¿ã¾ã—ã‚‡ã†ã€‚æŠ½å‡ºã™ã‚‹å¯¾è±¡åˆ—ã¯å…¨åˆ—ã¨ã—ã¾ã™ã€‚
 
--- Žæ“¾–½—ß
+-- å–å¾—å‘½ä»¤
 SELECT
--- ‘SƒJƒ‰ƒ€
+-- å…¨ã‚«ãƒ©ãƒ 
 	*
--- Žæ“¾Œ³
+-- å–å¾—å…ƒ
 FROM
--- ‘Ý‚µo‚µ‹L˜^ƒe[ƒuƒ‹
+-- è²¸ã—å‡ºã—è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
 	rental
--- Žæ“¾ðŒ
+-- å–å¾—æ¡ä»¶
 WHERE
--- ‘Ýo“ú‚ª2012”N12ŒŽ1“ú‚æ‚è‘O
+-- è²¸å‡ºæ—¥ãŒ2012å¹´12æœˆ1æ—¥ã‚ˆã‚Šå‰
 	rental_date < '2012-12-01'
--- ‚©‚Â
+-- ã‹ã¤
 AND
--- –¢•Ô‹p
+-- æœªè¿”å´
 	returned = 0
--- ƒ\[ƒg
+-- ã‚½ãƒ¼ãƒˆ
 ORDER BY
--- ‘Ýo“ú‚ªV‚µ‚¢‡
+-- è²¸å‡ºæ—¥ãŒæ–°ã—ã„é †
 	rental_date DESC
 ;
 
-postgres=# -- Žæ“¾–½—ß
+postgres=# -- å–å¾—å‘½ä»¤
 postgres=# SELECT
-postgres-# -- ‘SƒJƒ‰ƒ€
+postgres-# -- å…¨ã‚«ãƒ©ãƒ 
 postgres-#      *
-postgres-# -- Žæ“¾Œ³
+postgres-# -- å–å¾—å…ƒ
 postgres-# FROM
-postgres-# -- ‘Ý‚µo‚µ‹L˜^ƒe[ƒuƒ‹
+postgres-# -- è²¸ã—å‡ºã—è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
 postgres-#      rental
-postgres-# -- Žæ“¾ðŒ
+postgres-# -- å–å¾—æ¡ä»¶
 postgres-# WHERE
-postgres-# -- ‘Ýo“ú‚ª2012”N12ŒŽ1“ú‚æ‚è‘O
+postgres-# -- è²¸å‡ºæ—¥ãŒ2012å¹´12æœˆ1æ—¥ã‚ˆã‚Šå‰
 postgres-#      rental_date < '2012-12-01'
-postgres-# -- ‚©‚Â
+postgres-# -- ã‹ã¤
 postgres-# AND
-postgres-# -- –¢•Ô‹p
+postgres-# -- æœªè¿”å´
 postgres-#      returned = 0
-postgres-# -- ƒ\[ƒg
+postgres-# -- ã‚½ãƒ¼ãƒˆ
 postgres-# ORDER BY
-postgres-# -- ‘Ýo“ú‚ªV‚µ‚¢‡
+postgres-# -- è²¸å‡ºæ—¥ãŒæ–°ã—ã„é †
 postgres-#      rental_date DESC
 postgres-# ;
  id | user_id |     isbn      | rental_date | returned
@@ -49,9 +49,9 @@ postgres-# ;
  14 | A200405 | 4-0010-0000-0 | 2012-06-14  |        0
  10 | B200504 | 4-0010-0000-0 | 2012-03-20  |        0
  12 | A200402 | 4-8833-0000-2 | 2012-02-22  |        0
-(3 s)
+(3 è¡Œ)
 
-ƒe[ƒuƒ‹‘S—Ê
+ãƒ†ãƒ¼ãƒ–ãƒ«å…¨é‡
 postgres=# SELECT * FROM rental;
  id | user_id |     isbn      | rental_date | returned
 ----+---------+---------------+-------------+----------
@@ -80,4 +80,4 @@ postgres=# SELECT * FROM rental;
  23 | A200405 | 4-8833-0000-3 | 2012-12-22  |        0
  24 | B200403 | 4-0010-0000-9 | 2012-12-27  |        0
  25 | B200405 | 4-0010-0000-1 | 2013-03-10  |        0
-(25 s)
+(25 è¡Œ)
