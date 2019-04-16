@@ -1,6 +1,6 @@
-ˆÈ‰º‚ÍAƒAƒNƒZƒX‹L˜^ƒe[ƒuƒ‹(access_log)‚©‚çƒƒjƒ…[ƒR[ƒh•Ê‚ÌƒAƒNƒZƒX”‚ğæ“¾‚·‚é‚½‚ß‚ÌSQL–½—ß‚Å‚·‚ªA2“_Œë‚è‚ª‚ ‚è‚Ü‚·B
+ä»¥ä¸‹ã¯ã€ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«(access_log)ã‹ã‚‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒ¼ãƒ‰åˆ¥ã®ã‚¢ã‚¯ã‚»ã‚¹æ•°ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®SQLå‘½ä»¤ã§ã™ãŒã€2ç‚¹èª¤ã‚ŠãŒã‚ã‚Šã¾ã™ã€‚
 
-–â‘è
+å•é¡Œ
 SELECT
 	page_id,
 	SUM(*)
@@ -10,36 +10,36 @@ ORDER BY
 	page_id
 ;
 
-‰ñ“š
--- æ“¾–½—ß
+å›ç­”
+-- å–å¾—å‘½ä»¤
 SELECT
--- ƒy[ƒWIDƒJƒ‰ƒ€
+-- ãƒšãƒ¼ã‚¸IDã‚«ãƒ©ãƒ 
 	page_id,
--- Œ”æ“¾
+-- ä»¶æ•°å–å¾—
 	COUNT(*)
--- æ“¾Œ³
+-- å–å¾—å…ƒ
 FROM
--- ƒAƒNƒZƒX‹L˜^ƒe[ƒuƒ‹
+-- ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
 	access_log
--- ƒOƒ‹[ƒv‰»
+-- ã‚°ãƒ«ãƒ¼ãƒ—åŒ–
 GROUP BY
--- ƒy[ƒWID
+-- ãƒšãƒ¼ã‚¸ID
 	page_id
 ;
 
-postgres=# -- æ“¾–½—ß
+postgres=# -- å–å¾—å‘½ä»¤
 postgres=# SELECT
-postgres-# -- ƒy[ƒWIDƒJƒ‰ƒ€
+postgres-# -- ãƒšãƒ¼ã‚¸IDã‚«ãƒ©ãƒ 
 postgres-#      page_id,
-postgres-# -- Œ”æ“¾
+postgres-# -- ä»¶æ•°å–å¾—
 postgres-#      COUNT(*)
-postgres-# -- æ“¾Œ³
+postgres-# -- å–å¾—å…ƒ
 postgres-# FROM
-postgres-# -- ƒAƒNƒZƒX‹L˜^ƒe[ƒuƒ‹
+postgres-# -- ã‚¢ã‚¯ã‚»ã‚¹è¨˜éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
 postgres-#      access_log
-postgres-# -- ƒOƒ‹[ƒv‰»
+postgres-# -- ã‚°ãƒ«ãƒ¼ãƒ—åŒ–
 postgres-# GROUP BY
-postgres-# -- ƒy[ƒWID
+postgres-# -- ãƒšãƒ¼ã‚¸ID
 postgres-#      page_id
 postgres-# ;
  page_id | count
@@ -58,9 +58,9 @@ postgres-# ;
  D0004   |     1
  D0001   |    12
  C0004   |     2
-(14 s)
+(14 è¡Œ)
 
-ƒe[ƒuƒ‹‘S—Ê
+ãƒ†ãƒ¼ãƒ–ãƒ«å…¨é‡
 postgres=# SELECT * FROM access_log;
  log_id | page_id |          referer          |   ip_address    |     access_date
 --------+---------+---------------------------+-----------------+---------------------
@@ -190,4 +190,4 @@ postgres=# SELECT * FROM access_log;
     124 | C0004   | http://wings.msn.to/kame/ | 192.168.206.132 | 2013-01-05 13:16:12
     125 | C0005   | http://wings.msn.to/neko/ | 192.168.211.109 | 2013-01-05 17:18:19
     126 | C0001   | http://wings.msn.to/hamu/ | 192.168.165.19  | 2013-01-05 20:18:19
-(126 s)
+(126 è¡Œ)
