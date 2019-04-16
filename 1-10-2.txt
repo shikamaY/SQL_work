@@ -14,33 +14,33 @@ GROPU BY
 回答
 -- 取得命令
 SELECT
--- 都道府県のカラム名を日本語で表示
+	-- 都道府県のカラム名を日本語で表示
 	prefecture AS 都道府県名,
--- 年齢の平均値とそのカラム名を日本語で表示
+	-- 年齢の平均値とそのカラム名を日本語で表示
 	AVG(age) AS 平均年齢
 -- 取得元
 FROM
--- アンケート回答テーブル
+	-- アンケート回答テーブル
 	quest
 -- グループ化
 GROUP BY
--- 都道府県でまとめる
+	-- 都道府県でまとめる
 	prefecture
 ;
 
 postgres=# -- 取得命令
 postgres=# SELECT
-postgres-# -- 都道府県のカラム名を日本語で表示
+postgres-#      -- 都道府県のカラム名を日本語で表示
 postgres-#      prefecture AS 都道府県名,
-postgres-# -- 年齢の平均値とそのカラム名を日本語で表示
+postgres-#      -- 年齢の平均値とそのカラム名を日本語で表示
 postgres-#      AVG(age) AS 平均年齢
 postgres-# -- 取得元
 postgres-# FROM
-postgres-# -- アンケート回答テーブル
+postgres-#      -- アンケート回答テーブル
 postgres-#      quest
 postgres-# -- グループ化
 postgres-# GROUP BY
-postgres-# -- 都道府県でまとめる
+postgres-#      -- 都道府県でまとめる
 postgres-#      prefecture
 postgres-# ;
  都道府県名 |      平均年齢

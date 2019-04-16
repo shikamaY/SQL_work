@@ -13,35 +13,34 @@ ORDER BY
 ;
 
 回答
---　取得命令
+-- 取得命令
 SELECT
--- 商品名のカラム名を日本語で表示
+	-- 商品名のカラム名を日本語で表示
 	p_name AS 商品名,
--- 価格名のカラム名を日本語で表示
+	-- 価格名のカラム名を日本語で表示
 	price AS 価格
 -- 取得元
 FROM
--- 商品テーブル
+	-- 商品テーブル
 	product
 -- ソート
 ORDER BY
--- 価格が安い順
+	-- 価格が安い順
 	price ASC
 ;
-
-postgres=# --　取得命令
+postgres=# -- 取得命令
 postgres=# SELECT
-postgres-# -- 商品名カラムを日本語名で表示
+postgres-#      -- 商品名のカラム名を日本語で表示
 postgres-#      p_name AS 商品名,
-postgres-# -- 価格名カラムを日本語名で表示
+postgres-#      -- 価格名のカラム名を日本語で表示
 postgres-#      price AS 価格
 postgres-# -- 取得元
 postgres-# FROM
-postgres-# -- 商品テーブル
+postgres-#      -- 商品テーブル
 postgres-#      product
 postgres-# -- ソート
 postgres-# ORDER BY
-postgres-# -- 価格が安い順
+postgres-#      -- 価格が安い順
 postgres-#      price ASC
 postgres-# ;
     商品名    | 価格

@@ -3,32 +3,32 @@
 
 -- 取得命令
 SELECT
--- 出版社のカラム名を日本語で表示
+	-- 出版社のカラム名を日本語で表示
 	publish AS 出版社,
--- 価格の平均値、カラム名を「平均値」で表示
+	-- 価格の平均値、カラム名を「平均値」で表示
 	AVG(price) AS 価格平均
 -- 取得元
 FROM
--- 書籍情報テーブル
+	-- 書籍情報テーブル
 	books
 -- グループ化
 GROUP BY
--- 出版社ごと
+	-- 出版社ごと
 	publish
 ;
 postgres=# -- 取得命令
 postgres=# SELECT
-postgres-# -- 出版社のカラム名を日本語で表示
+postgres-#      -- 出版社のカラム名を日本語で表示
 postgres-#      publish AS 出版社,
-postgres-# -- 価格の平均値、カラム名を「平均値」で表示
+postgres-#      -- 価格の平均値、カラム名を「平均値」で表示
 postgres-#      AVG(price) AS 価格平均
 postgres-# -- 取得元
 postgres-# FROM
-postgres-# -- 書籍情報テーブル
+postgres-#      -- 書籍情報テーブル
 postgres-#      books
 postgres-# -- グループ化
 postgres-# GROUP BY
-postgres-# -- 出版社ごと
+postgres-#      -- 出版社ごと
 postgres-#      publish
 postgres-# ;
     出版社    |       価格平均

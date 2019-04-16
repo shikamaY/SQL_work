@@ -17,41 +17,40 @@ GROPU BY
 回答
 -- 取得命令
 SELECT
--- 出版社カラム
+	-- 出版社カラム
 	prefecture,
--- 性別カラム
+	-- 性別カラム
 	sex,
--- 回答の平均、カラム名を「評価平均」と表示
+	-- 回答の平均、カラム名を「評価平均」と表示
 	AVG(answer1) AS 評価平均
 -- 取得元
 FROM
--- アンケート回答テーブル
+	-- アンケート回答テーブル
 	quest
 -- グループ化
 GROUP BY
--- 都道府県ごと
+	-- 都道府県ごと
 	prefecture,
--- かつ性別ごと
+	-- かつ性別ごと
 	sex
 ;
-
 postgres=# -- 取得命令
 postgres=# SELECT
-postgres-# -- 出版社カラム
+postgres-#      -- 出版社カラム
 postgres-#      prefecture,
-postgres-# -- 性別カラム
+postgres-#      -- 性別カラム
 postgres-#      sex,
-postgres-# -- 回答の平均、カラム名を「評価平均」と表示
+postgres-#      -- 回答の平均、カラム名を「評価平均」と表示
 postgres-#      AVG(answer1) AS 評価平均
 postgres-# -- 取得元
 postgres-# FROM
-postgres-# -- アンケート回答テーブル
+postgres-#      -- アンケート回答テーブル
 postgres-#      quest
 postgres-# -- グループ化
 postgres-# GROUP BY
-postgres-# -- 都道府県ごと
+postgres-#      -- 都道府県ごと
 postgres-#      prefecture,
-postgres-# -- かつ性別ごと
+postgres-#      -- かつ性別ごと
 postgres-#      sex
 postgres-# ;
  prefecture | sex |        評価平均

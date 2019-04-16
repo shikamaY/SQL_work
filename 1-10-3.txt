@@ -3,33 +3,32 @@
 
 -- 取得命令
 SELECT
--- 都道府県のカラム名を日本語で表示
+	-- 都道府県のカラム名を日本語で表示
 	prefecture AS 都道府県名,
--- ユーザ数をカウント、カラム名を「ユーザ数」と表示
+	-- ユーザ数をカウント、カラム名を「ユーザ数」と表示
 	count(*) AS ユーザ数
 -- 取得元
 FROM
--- ユーザテーブル
+	-- ユーザテーブル
 	usr
 -- グループ化
 GROUP BY
--- 都道府県ごと
+	-- 都道府県ごと
 	prefecture
-;	
-
+;
 postgres=# -- 取得命令
 postgres=# SELECT
-postgres-# -- 都道府県のカラム名を日本語で表示
+postgres-#      -- 都道府県のカラム名を日本語で表示
 postgres-#      prefecture AS 都道府県名,
-postgres-# -- ユーザ数をカウント、カラム名を「ユーザ数」と表示
+postgres-#      -- ユーザ数をカウント、カラム名を「ユーザ数」と表示
 postgres-#      count(*) AS ユーザ数
 postgres-# -- 取得元
 postgres-# FROM
-postgres-# -- ユーザテーブル
+postgres-#      -- ユーザテーブル
 postgres-#      usr
 postgres-# -- グループ化
 postgres-# GROUP BY
-postgres-# -- 都道府県ごと
+postgres-#      -- 都道府県ごと
 postgres-#      prefecture
 postgres-# ;
  都道府県名 | ユーザ数
