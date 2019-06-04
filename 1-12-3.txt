@@ -1,0 +1,59 @@
+著者-書籍情報テーブル(author_books)で、著者ごとの書籍数を求め、
+登録数が3冊以上の情報だけを取り出してみましょう。
+
+-- 取得命令
+SELECT
+	-- 著者IDカラム
+	author_id
+-- 取得元
+FROM
+	-- 著者-書籍情報テーブル
+	author_books
+-- グループ化
+GROUP BY
+	-- 著者IDカラム
+	author_id
+-- 取得条件
+HAVING
+	-- 登録数が3件以上のものを対象
+	COUNT(*) > 2
+;
+
+kensyu=# -- 取得命令
+kensyu=# SELECT
+kensyu-#        -- 著者IDカラム
+kensyu-#        author_id
+kensyu-# -- 取得元
+kensyu-# FROM
+kensyu-#        -- 著者-書籍情報テーブル
+kensyu-#        author_books
+kensyu-# -- グループ化
+kensyu-# GROUP BY
+kensyu-#        -- 著者IDカラム
+kensyu-#        author_id
+kensyu-# -- 取得条件
+kensyu-# HAVING
+kensyu-#        -- 登録数が3件以上のものを対象
+kensyu-#        COUNT(*) > 2
+kensyu-# ;
+ author_id
+-----------
+ Y0002
+(1 行)
+
+テーブル全量
+kensyu=# select * from author_books;
+     isbn      | author_id
+---------------+-----------
+ 4-0010-0000-0 | Y0001
+ 4-7981-0959-2 | Y0002
+ 4-7980-0945-8 | Y0002
+ 4-8833-0000-1 | S0001
+ 4-0010-0000-4 | Y0001
+ 4-7981-0722-0 | Y0002
+ 4-7980-0522-3 | Y0002
+ 4-8833-0000-2 | K0001
+ 4-8833-0000-3 | T0001
+ 4-0010-0000-9 | M0001
+ 4-0010-0000-1 | A0001
+(11 行)

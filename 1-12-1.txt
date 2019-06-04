@@ -1,13 +1,14 @@
-アンケート回答テーブル(quest)から都道府県別の評価の平均値を求めてみましょう
-その際、平均値は小数点以下を四捨五入します。以下の空欄を埋めてSQL命令を完成させてください
+アンケート回答テーブル(quest)から都道府県ごとに年齢の平均値を求め、35歳以上
+50歳未満のデータのみを取り出してみましょう。以下の空欄を埋めて、SQL命令を完成させてください。
 
 問題
 SELECT
-	prefecture,
-	① AS 評価平均
+	①
 FROM
 	quest
 GROUP BY
+	prefecture
+HAVING
 	②
 ;
 
@@ -15,42 +16,42 @@ GROUP BY
 -- 取得命令
 SELECT
 	-- 都道府県カラム
-	prefecture,
-	-- 評価の平均値を四捨五入
-	ROUND(AVG(answer1),1) AS 評価平均
--- 取得元
+	prefecture
+-- 取得元	
 FROM
 	-- アンケート回答テーブル
 	quest
 -- グループ化
 GROUP BY
-	-- 都道府県を別
+	-- 都道府県カラム
 	prefecture
+-- 取得条件
+HAVING
+	-- 年齢の平均が35歳から50歳未満の場合
+	AVG(age) BETWEEN 35 AND 50
 ;
 
 kensyu=# -- 取得命令
 kensyu=# SELECT
 kensyu-#        -- 都道府県カラム
-kensyu-#        prefecture,
-kensyu-#        -- 評価の平均値を四捨五入
-kensyu-#        ROUND(AVG(answer1),1) AS 評価平均
+kensyu-#        prefecture
 kensyu-# -- 取得元
 kensyu-# FROM
 kensyu-#        -- アンケート回答テーブル
 kensyu-#        quest
 kensyu-# -- グループ化
 kensyu-# GROUP BY
-kensyu-#        -- 都道府県を別
+kensyu-#        -- 都道府県カラム
 kensyu-#        prefecture
+kensyu-# -- 取得条件
+kensyu-# HAVING
+kensyu-#        -- 年齢の平均が35歳から50歳未満の場合
+kensyu-#        AVG(age) BETWEEN 35 AND 50
 kensyu-# ;
- prefecture | 評価平均
-------------+----------
- 茨城県     |      2.0
- 千葉県     |      3.0
- 埼玉県     |      3.0
- 神奈川県   |      2.3
- 東京都     |      1.8
-(5 行)
+ prefecture
+------------
+ 茨城県
+(1 行)
 
 テーブル全量
 kensyu=# select * from quest;
