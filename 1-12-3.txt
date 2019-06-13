@@ -16,7 +16,7 @@ GROUP BY
 -- 取得条件
 HAVING
 	-- 登録数が3件以上のものを対象
-	COUNT(*) > 2
+	COUNT(*) >= 3
 ;
 
 kensyu=# -- 取得命令
@@ -34,7 +34,7 @@ kensyu-#        author_id
 kensyu-# -- 取得条件
 kensyu-# HAVING
 kensyu-#        -- 登録数が3件以上のものを対象
-kensyu-#        COUNT(*) > 2
+kensyu-#        COUNT(*) >= 3
 kensyu-# ;
  author_id
 -----------
