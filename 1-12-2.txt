@@ -11,7 +11,7 @@ FROM
 GROUP BY
 	prefecture
 ③
-	MASX(age)>60
+	MAX(age)>60
 ;
 
 回答
