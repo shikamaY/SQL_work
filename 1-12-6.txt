@@ -1,4 +1,4 @@
-アクセス記録テーブル(access_log)からアクセス日付が2013/10/01以降のものについて、
+アクセス記録テーブル(access_log)からアクセス日付が2013/01/01以降のものについて、
 リンク元URLごとにアクセス数を算出してみましょう。その際、アクセス数が5件未満の
 物のみアクセス数で出力させてください。
 
@@ -32,7 +32,7 @@ FROM
 -- 取得条件	
 WHERE
 	-- 2013/01/01以降の日付を対象
-	access_date > '2013-01-01'
+	access_date >= '2013-01-01'
 -- グループ化
 GROUP BY
 	-- リンク元URL
@@ -59,7 +59,7 @@ kensyu-#        access_log
 kensyu-# -- 取得条件
 kensyu-# WHERE
 kensyu-#        -- 2013/01/01以降の日付を対象
-kensyu-#        access_date > '2013-01-01'
+kensyu-#        access_date >= '2013-01-01'
 kensyu-# -- グループ化
 kensyu-# GROUP BY
 kensyu-#        -- リンク元URL
