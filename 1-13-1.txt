@@ -26,7 +26,7 @@ SELECT
 		-- 評価が2の場合、「普通」と表示
 		WHEN answer1 = 2 THEN '普通'
 		-- 評価が上記以外の場合、「役に立たない」と表示
-		ELSE '役に立たない'
+		WHEN answer1 = 1 THEN '役に立たない'
 	-- 条件分岐終了,別名表示
 	END AS 評価,
 	-- 感想カラムを別名表示
@@ -51,7 +51,7 @@ kensyu-#                WHEN answer1 = 3 THEN 'ためになった'
 kensyu-#                -- 評価が2の場合、「普通」と表示
 kensyu-#                WHEN answer1 = 2 THEN '普通'
 kensyu-#                -- 評価が上記以外の場合、「役に立たない」と表示
-kensyu-#                ELSE '役に立たない'
+kensyu-#                WHEN answer1 = 1 THEN '役に立たない'
 kensyu-#        -- 条件分岐終了,別名表示
 kensyu-#        END AS 評価,
 kensyu-#        -- 感想カラムを別名表示
