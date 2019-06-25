@@ -1,0 +1,83 @@
+著者-書籍情報テーブル（author_books）で、著者ごとの書籍数を求めてみましょう。
+その際、書籍数が4冊以上の著者は「多い」、2冊以上4冊未満の著者は「普通」、2冊未満の著者は
+「少ない」と出力します。また、出力列の名前は先頭から「著者ID」「カウント数」「評価」とします。
+
+回答
+-- 取得命令
+SELECT
+	-- 著者IDカラム
+	author_id AS 著者ID,
+	-- 書籍数
+	count(*) AS カウント数,
+	-- 条件分岐
+	CASE
+		-- 4冊以上の場合は多い
+		WHEN count(*) >= 4 THEN '多い'
+		-- 2冊以上の場合はふつう
+		WHEN count(*) >= 2 THEN '普通'
+		-- それ以外は少ない
+		ELSE '少ない'
+	-- 結果のカラムを評価と表示
+	END AS 評価
+-- 取得元
+FROM
+	-- 著者-書籍情報テーブル
+	author_books
+-- グループ化
+GROUP BY
+	-- 著者IDごと
+	author_id
+;
+
+kensyu=# -- 取得命令
+kensyu=# SELECT
+kensyu-#        -- 著者IDカラム
+kensyu-#        author_id AS 著者ID,
+kensyu-#        -- 書籍数
+kensyu-#        count(*) AS カウント数,
+kensyu-#        -- 条件分岐
+kensyu-#        CASE
+kensyu-#                -- 4冊以上の場合は多い
+kensyu-#                WHEN count(*) >= 4 THEN '多い'
+kensyu-#                -- 2冊以上の場合はふつう
+kensyu-#                WHEN count(*) >= 2 THEN '普通'
+kensyu-#                -- それ以外は少ない
+kensyu-#                ELSE '少ない'
+kensyu-#        -- 結果のカラムを評価と表示
+kensyu-#        END AS 評価
+kensyu-# -- 取得元
+kensyu-# FROM
+kensyu-#        -- 著者-書籍情報テーブル
+kensyu-#        author_books
+kensyu-# -- グループ化
+kensyu-# GROUP BY
+kensyu-#        -- 著者IDごと
+kensyu-#        author_id
+kensyu-# ;
+ 著者id | カウント数 |  評価
+--------+------------+--------
+ A0001  |          1 | 少ない
+ T0001  |          1 | 少ない
+ Y0001  |          2 | 普通
+ S0001  |          1 | 少ない
+ K0001  |          1 | 少ない
+ Y0002  |          4 | 多い
+ M0001  |          1 | 少ない
+(7 行)
+
+テーブル全量
+kensyu=# select * from author_books;
+     isbn      | author_id
+---------------+-----------
+ 4-0010-0000-0 | Y0001
+ 4-7981-0959-2 | Y0002
+ 4-7980-0945-8 | Y0002
+ 4-8833-0000-1 | S0001
+ 4-0010-0000-4 | Y0001
+ 4-7981-0722-0 | Y0002
+ 4-7980-0522-3 | Y0002
+ 4-8833-0000-2 | K0001
+ 4-8833-0000-3 | T0001
+ 4-0010-0000-9 | M0001
+ 4-0010-0000-1 | A0001
+(11 行)
