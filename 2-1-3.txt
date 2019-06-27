@@ -19,10 +19,12 @@ INNER JOIN
 ON
 	-- 店舗IDが同じレコード
 	sh.s_id = sl.s_id
+WHERE
+	sl.s_date BETWEEN '2012-01' AND '2012-12'
 -- グループ化
 GROUP BY
 	-- 店舗IDごと
-	sh.s_id
+	sh.s_name
 -- ソート
 ORDER BY
 	-- 売り上げの合計が低い順
@@ -47,10 +49,54 @@ kensyu-# -- 結合条件
 kensyu-# ON
 kensyu-#        -- 店舗IDが同じレコード
 kensyu-#        sh.s_id = sl.s_id
+kensyu-# WHERE
+kensyu-#        sl.s_date BETWEEN '2012-01' AND '2012-12'
 kensyu-# -- グループ化
 kensyu-# GROUP BY
-kensyu-#        -- 店舗IDごと
+kensyu-#        -- 店舗名ごと
 kensyu-#        sh.s_id
+kensyu-# -- ソート
+kensyu-# ORDER BY
+kensyu-#        -- 売り上げの合計が低い順
+kensyu-#        SUM(sl.s_value) ASC
+kensyu-# ;
+    s_name    |  sum
+--------------+-------
+ 三吉町南店   | 12032
+ 東桜町店     | 19836
+ 北花町東店   | 20580
+ 北花町駅前店 | 21376
+ 三吉町店     | 21929
+(5 行)
+
+
+kensyu=#
+kensyu=#
+kensyu=#
+kensyu=# -- 取得命令
+kensyu=# SELECT
+kensyu-#        -- 店名カラム
+kensyu-#        sh.s_name,
+kensyu-#        -- 店舗ごとの売上カラムの合計
+kensyu-#        SUM(sl.s_value)
+kensyu-# -- 取得元
+kensyu-# FROM
+kensyu-#        -- 店舗テーブル
+kensyu-#        shop AS sh
+kensyu-# -- 内部結合
+kensyu-# INNER JOIN
+kensyu-#        -- 売上テーブル
+kensyu-#        sales AS sl
+kensyu-# -- 結合条件
+kensyu-# ON
+kensyu-#        -- 店舗IDが同じレコード
+kensyu-#        sh.s_id = sl.s_id
+kensyu-# WHERE
+kensyu-#        sl.s_date BETWEEN '2012-01' AND '2012-12'
+kensyu-# -- グループ化
+kensyu-# GROUP BY
+kensyu-#        -- 店舗名ごと
+kensyu-#        sh.s_name
 kensyu-# -- ソート
 kensyu-# ORDER BY
 kensyu-#        -- 売り上げの合計が低い順
