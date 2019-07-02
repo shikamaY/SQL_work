@@ -1,0 +1,99 @@
+メニューテーブル(menu)からそれぞれのメニューに対応する親メニュー名をメニューコードについて昇順に
+取り出してみましょう。以下の空白を埋めて、SQL命令を完成させてください
+
+問題
+SELECT
+	① AS メニュー名,
+	② AS 親メニュー名
+FROM
+	③ AS mc
+INNER JOIN
+	③ AS mn
+ON
+	④
+ORDER BY
+	⑤
+
+回答
+-- 取得命令
+SELECT
+	-- メニューカラム
+	mc.title AS メニュー名,
+	-- メニューカラムに紐づく親メニューカラム
+	mn.title AS 親メニュー名
+-- 取得元
+FROM
+	-- メニューテーブル
+	menu AS mc
+-- テーブル結合
+INNER JOIN
+	-- メニューに紐づく親メニューIDを取得するため、自己結合
+	menu AS mn
+-- 結合条件
+ON
+	-- メニューIDと親メニューID
+	mn.page_id = mc.parent
+-- ソート
+ORDER BY
+	-- ページIDを昇順
+	mc.page_id ASC
+;
+kensyu=# -- 取得命令
+kensyu=# SELECT
+kensyu-#        -- メニューカラム
+kensyu-#        mc.title AS メニュー名,
+kensyu-#        -- メニューカラムに紐づく親メニューカラム
+kensyu-#        mn.title AS 親メニュー名
+kensyu-# -- 取得元
+kensyu-# FROM
+kensyu-#        -- メニューテーブル
+kensyu-#        menu AS mc
+kensyu-# -- テーブル結合
+kensyu-# INNER JOIN
+kensyu-#        -- メニューに紐づく親メニューIDを取得するため、自己結合
+kensyu-#        menu AS mn
+kensyu-# -- 結合条件
+kensyu-# ON
+kensyu-#        -- メニューIDと親メニューID
+kensyu-#        mn.page_id = mc.parent
+kensyu-# -- ソート
+kensyu-# ORDER BY
+kensyu-#        -- ページIDを昇順
+kensyu-#        mc.page_id ASC
+kensyu-# ;
+       メニュー名       |      親メニュー名
+------------------------+------------------------
+ WINGSについて          | ホーム
+ WINGSの歴史            | WINGSについて
+ WINGSメンバー紹介      | WINGSについて
+ WINGSメンバ募集        | WINGSについて
+ 技術記事オンライン公開 | ホーム
+ 最新インターネット記事 | 技術記事オンライン公開
+ PHP関連記事            | 技術記事オンライン公開
+ Java関連記事           | 技術記事オンライン公開
+ ASP.NET関連記事        | 技術記事オンライン公開
+ 新刊案内               | ホーム
+ PHP関連新刊            | 新刊案内
+ Java関連新刊           | 新刊案内
+ ASP.NET関連新刊        | 新刊案内
+(13 行)
+
+テーブル全量
+kensyu=# select * from menu;
+ page_id |         title          | parent
+---------+------------------------+--------
+ A0001   | ホーム                 |
+ B0001   | WINGSについて          | A0001
+ B0002   | WINGSの歴史            | B0001
+ B0003   | WINGSメンバー紹介      | B0001
+ B0004   | WINGSメンバ募集        | B0001
+ C0001   | 技術記事オンライン公開 | A0001
+ C0002   | 最新インターネット記事 | C0001
+ C0003   | PHP関連記事            | C0001
+ C0004   | Java関連記事           | C0001
+ C0005   | ASP.NET関連記事        | C0001
+ D0001   | 新刊案内               | A0001
+ D0002   | PHP関連新刊            | D0001
+ D0003   | Java関連新刊           | D0001
+ D0004   | ASP.NET関連新刊        | D0001
+(14 行)
