@@ -18,11 +18,10 @@ WHERE
 回答
 -- 取得命令
 SELECT
-	*
 	-- 部署IDカラム
-	--d.depart_id,
+	d.depart_id,
 	-- 部署名カラム
-	--d.depart_name
+	d.depart_name
 -- 取得元
 FROM
 	-- 所属部署テーブル
@@ -40,14 +39,12 @@ WHERE
 	-- 社員IDがNULLのレコード
 	s_id IS NULL
 ;
-
 kensyu=# -- 取得命令
 kensyu=# SELECT
-kensyu-#        *
 kensyu-#        -- 部署IDカラム
-kensyu-#        --d.depart_id,
+kensyu-#        d.depart_id,
 kensyu-#        -- 部署名カラム
-kensyu-#        --d.depart_name
+kensyu-#        d.depart_name
 kensyu-# -- 取得元
 kensyu-# FROM
 kensyu-#        -- 所属部署テーブル
@@ -65,10 +62,11 @@ kensyu-# WHERE
 kensyu-#        -- 社員IDがNULLのレコード
 kensyu-#        s_id IS NULL
 kensyu-# ;
- depart_id | depart_name | s_id | l_name | f_name | l_name_kana | f_name_kana | sex | class | depart_id | b_id | last_update | retired
------------+-------------+------+--------+--------+-------------+-------------+-----+-------+-----------+------+-------------+---------
- E02       | 第二営業部  |      |        |        |             |             |     |       |           |      |             |
+ depart_id | depart_name
+-----------+-------------
+ E02       | 第二営業部
 (1 行)
+
 
 テーブル全量
 kensyu=# select * from employee;
