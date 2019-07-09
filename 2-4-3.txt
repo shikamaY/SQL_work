@@ -1,0 +1,219 @@
+注文書テーブル(order_main)と注文明細テーブル(order_desc)、ユーザテーブル(usr)、商品テーブル(product)
+を結合し、未納の注文について、発注日、注文コード、商品コードを昇順に注文情報を出力してみましょう。
+出力列の別名は、発注日、注文コード、利用者氏名、商品名、商品単価、購入数とします。
+
+-- 取得命令
+SELECT
+	-- 注文書テーブルの発注日カラム
+	mainTable.order_date AS 発注日,
+	-- 注文書テーブルの注文コードカラム
+	mainTable.po_id AS 注文コード,
+	-- ユーザテーブルの氏名を結合して表示
+	usrTable.l_name || usrTable.f_name AS 利用者氏名,
+	-- 商品テーブルの商品名カラム
+	productTable.p_name AS 商品名,
+	-- 商品テーブルの商品価格カラム
+	productTable.price AS 商品単価,
+	-- 注文明細テーブルの購入数カラム
+	descTable.quantity AS 購入数
+-- 取得元
+FROM
+	(
+		-- 注文書テーブル
+		order_main AS mainTable
+	-- 内部結合
+	INNER JOIN
+		-- ユーザテーブル
+		usr AS usrTable
+	-- 結合条件
+	ON
+		-- ユーザIDが同じレコード
+		mainTable.user_id = usrTable.user_id
+	)
+-- 上記の表と内部結合
+INNER JOIN
+	(
+		-- 注文明細テーブル
+		order_desc AS descTable
+	-- 内部結合
+	INNER JOIN
+		-- 商品テーブル
+		product AS productTable
+	-- 結合条件
+	ON
+		-- 商品IDが同じレコード
+		descTable.p_id = productTable.p_id
+	)
+-- 4テーブルの結合条件
+ON
+	-- 注文コードが同じレコード
+	mainTable.po_id = descTable.po_id
+-- 取得条件
+WHERE
+	-- 納品日カラムがnullのレコード
+	mainTable.delivery_date IS NULL
+-- ソート
+ORDER BY
+	-- 発注日を昇順
+	mainTable.order_date ASC,
+	-- 注文コードを昇順
+	mainTable.po_id ASC,
+	-- 商品コードを昇順
+	descTable.p_id ASC
+;
+
+kensyu=# -- 取得命令
+kensyu=# SELECT
+kensyu-#        -- 注文書テーブルの発注日カラム
+kensyu-#        mainTable.order_date AS 発注日,
+kensyu-#        -- 注文書テーブルの注文コードカラム
+kensyu-#        mainTable.po_id AS 注文コード,
+kensyu-#        -- ユーザテーブルの氏名を結合して表示
+kensyu-#        usrTable.l_name || usrTable.f_name AS 利用者氏名,
+kensyu-#        -- 商品テーブルの商品名カラム
+kensyu-#        productTable.p_name AS 商品名,
+kensyu-#        -- 商品テーブルの商品価格カラム
+kensyu-#        productTable.price AS 商品単価,
+kensyu-#        -- 注文明細テーブルの購入数カラム
+kensyu-#        descTable.quantity AS 購入数
+kensyu-# -- 取得元
+kensyu-# FROM
+kensyu-#        (
+kensyu(#                -- 注文書テーブル
+kensyu(#                order_main AS mainTable
+kensyu(#        -- 内部結合
+kensyu(#        INNER JOIN
+kensyu(#                -- ユーザテーブル
+kensyu(#                usr AS usrTable
+kensyu(#        -- 結合条件
+kensyu(#        ON
+kensyu(#                -- ユーザIDが同じレコード
+kensyu(#                mainTable.user_id = usrTable.user_id
+kensyu(#        )
+kensyu-# -- 上記の表と内部結合
+kensyu-# INNER JOIN
+kensyu-#        (
+kensyu(#                -- 注文明細テーブル
+kensyu(#                order_desc AS descTable
+kensyu(#        -- 内部結合
+kensyu(#        INNER JOIN
+kensyu(#                -- 商品テーブル
+kensyu(#                product AS productTable
+kensyu(#        -- 結合条件
+kensyu(#        ON
+kensyu(#                -- 商品IDが同じレコード
+kensyu(#                descTable.p_id = productTable.p_id
+kensyu(#        )
+kensyu-# -- 4テーブルの結合条件
+kensyu-# ON
+kensyu-#        -- 注文コードが同じレコード
+kensyu-#        mainTable.po_id = descTable.po_id
+kensyu-# -- 取得条件
+kensyu-# WHERE
+kensyu-#        -- 納品日カラムがnullのレコード
+kensyu-#        mainTable.delivery_date IS NULL
+kensyu-# -- ソート
+kensyu-# ORDER BY
+kensyu-#        -- 発注日を昇順
+kensyu-#        mainTable.order_date ASC,
+kensyu-#        -- 注文コードを昇順
+kensyu-#        mainTable.po_id ASC,
+kensyu-#        -- 商品コードを昇順
+kensyu-#        descTable.p_id ASC
+kensyu-# ;
+   発注日   | 注文コード | 利用者氏名 |    商品名    | 商品単価 | 購入数
+------------+------------+------------+--------------+----------+--------
+ 2012-12-22 |         19 | 森本絵里   | 赤ボールペン |      100 |    100
+ 2012-12-25 |         20 | 西島文子   | 電卓         |      600 |     10
+(2 行)
+
+
+テーブル全量
+kensyu=# select * from order_main;
+ po_id | user_id | order_date | delivery_date
+-------+---------+------------+---------------
+     1 | A200405 | 2011-02-01 | 2011-02-07
+     2 | B200401 | 2011-03-02 | 2011-03-05
+     3 | B200402 | 2011-03-15 | 2011-03-18
+     4 | B200403 | 2011-04-15 | 2011-04-20
+     5 | B200404 | 2011-06-19 | 2011-06-30
+     6 | A200501 | 2011-08-05 | 2011-08-15
+     7 | A200501 | 2011-08-05 | 2011-08-15
+     8 | A200502 | 2011-08-24 | 2011-09-01
+     9 | A200503 | 2011-10-25 | 2011-11-01
+    10 | B200405 | 2011-12-04 | 2011-12-13
+    11 | A200501 | 2012-01-15 | 2012-01-19
+    12 | A200506 | 2012-02-14 | 2012-02-24
+    13 | B200501 | 2012-03-02 | 2012-03-05
+    14 | B200502 | 2012-04-05 | 2012-04-16
+    15 | B200503 | 2012-05-21 | 2012-05-30
+    16 | B200504 | 2012-06-04 | 2012-06-12
+    17 | B200501 | 2012-12-01 | 2012-12-08
+    18 | B200502 | 2012-12-14 | 2012-12-18
+    19 | B200503 | 2012-12-22 |
+    20 | B200504 | 2012-12-25 |
+(20 行)
+
+kensyu=# select * from order_desc;
+ po_id |    p_id    | quantity
+-------+------------+----------
+     1 | PB00000001 |      200
+     2 | PB00000002 |      300
+     3 | DE00000001 |       20
+     4 | TO00000001 |       10
+     5 | TO00000002 |       10
+     6 | TU00000001 |        2
+     7 | IS00000001 |        3
+     8 | PB00000001 |      100
+     9 | PB00000002 |      150
+    10 | DE00000001 |       10
+    11 | TO00000001 |        5
+    12 | TO00000002 |        5
+    13 | PB00000001 |        1
+    14 | PB00000002 |       50
+    15 | DE00000001 |       50
+    16 | TO00000001 |        5
+    17 | TO00000002 |        5
+    18 | PB00000001 |      100
+    19 | PB00000002 |      100
+    20 | DE00000001 |       10
+(20 行)
+
+kensyu=# select * from product;
+    p_id    |    p_name    | price
+------------+--------------+-------
+ PB00000001 | 黒ボールペン |   100
+ PB00000002 | 赤ボールペン |   100
+ DE00000001 | 電卓         |   600
+ TO00000001 | トナー黒     |  1000
+ TO00000002 | トナー赤     |  1000
+ TU00000001 | 机           | 15000
+ IS00000001 | 椅子         | 10000
+ MA00000001 | マウスパッド |  1500
+(8 行)
+
+kensyu=# select * from usr;
+ user_id | l_name | f_name | l_name_kana | f_name_kana | prefecture |     city     | o_address |     tel      |         email
+---------+--------+--------+-------------+-------------+------------+--------------+-----------+--------------+------------------------
+ A200401 | 井上   | 一郎   | イノウエ    | イチロウ    | 千葉県     | 東千葉市北町 | 2-4-1     | 040-111-0001 | inoue@wings.msn.to
+ A200402 | 上原   | 幸一   | ウエハラ    | コウイチ    | 神奈川県   | 神奈川市南町 | 1-5-2     | 040-222-0002 | uehara@wings.msn.to
+ A200403 | 江本   | 聡     | エモト      | サトシ      | 茨城県     | 茨城市西町   | 2-1-12    | 040-333-0003 | emoto@wings.msn.to
+ A200404 | 小野   | 雄二   | オノ        | ユウジ      | 東京都     | 東京市南町   | 3-2-6     | 040-111-0004 | ono@examples.com
+ A200405 | 河合   | 泰治   | カワイ      | ヤスハル    | 神奈川県   | 神奈川市北町 | 4-2-12    | 040-222-0005 | kawai@wings.msn.to
+ B200401 | 矢口   | 亜由美 | ヤグチ      | アユミ      | 千葉県     | 東千葉市南町 | 3-4-6     | 040-111-0011 | yaguchi@wings.msn.to
+ B200402 | 有木   | 茉莉   | アリキ      | マリ        | 神奈川県   | 神奈川市北町 | 1-4-5     | 040-222-0012 | yuki@wings.msn.to
+ B200403 | 吉岡   | 遥     | ヨシオカ    | ハルカ      | 茨城県     | 茨城市東町   | 7-2-1     | 040-333-0013 | yoshi@examples.com
+ B200404 | 和田   | 修子   | ワダ        | シュウコ    | 東京都     | 東京市北町   | 6-1-11    | 040-111-0014 | wada@wings.msn.to
+ B200405 | 松本   | 博美   | マツモト    | ヒロミ      | 神奈川県   | 神奈川市南町 | 3-4-21    | 040-222-0015 | matsu@wings.msn.to
+ A200501 | 山田   | 太郎   | ヤマダ      | タロウ      | 東京都     | 東京市西町   | 0-0-0     | 040-111-0031 | taro_yama@wings.msn.to
+ A200502 | 木下   | 一樹   | キノシタ    | カズキ      | 茨城県     | 茨城市東町   | 5-1-10    | 040-333-0006 | kino@wings.msn.to
+ A200503 | 久保田 | 守     | クボタ      | マモル      | 千葉県     | 東千葉市南町 | 2-1-21    | 040-111-0007 | kubota@wings.msn.to
+ A200504 | 児玉   | 毅     | コダマ      | ツヨシ      | 埼玉県     | 西埼玉市東町 | 3-4-11    | 040-444-0008 | kodama@wings.msn.to
+ A200505 | 坂口   | 駿     | サカグチ    | シュン      | 栃木県     | 北栃木市西町 | 6-2-4     | 040-555-0009 | saka@examples.com
+ A200506 | 井上   | 一郎   | イノウエ    | イチロウ    | 静岡県     | 南静岡市花町 | 4-2-1     | 040-666-0010 | shimi@wings.msn.to
+ B200501 | 南     | 沙恵   | ミナミ      | サエ        | 茨城県     | 茨城市西町   | 3-3-2     | 040-333-0016 | minami@wings.msn.to
+ B200502 | 村井   | 佐知子 | ムライ      | サチコ      | 千葉県     | 東千葉市北町 | 4-1-13    | 040-111-0017 | murai@wings.msn.to
+ B200503 | 森本   | 絵里   | モリモト    | エリ        | 埼玉県     | 西埼玉市西町 | 2-1-4     | 040-444-0018 | morimo@examples.com
+ B200504 | 西島   | 文子   | ニシジマ    | フミコ      | 栃木県     | 北栃木市東町 | 2-5-7     | 040-555-0019 | nishi@wings.msn.to
+ B200505 | 根岸   | 裕子   | ネギシ      | ユウコ      | 静岡県     | 南静岡市寺町 | 3-4-8     | 040-666-0020 | negi@wings.msn.to
+(21 行)
