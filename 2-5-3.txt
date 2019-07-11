@@ -1,0 +1,113 @@
+店舗テーブル(shop)と月間売上テーブル(sales)から2012年12月の売上高が店舗売上平均
+（2012年12月の平均）を下回っている店舗名とその売上高を上げてみましょう。
+
+-- 取得命令
+SELECT
+	-- 店舗名カラム
+	shopTable.s_name,
+	-- 売上カラム
+	shopSales.s_value
+-- 取得元
+FROM
+	-- 店舗テーブル
+	shop AS shopTable
+-- 内部結合
+INNER JOIN
+	-- 月間売上テーブル
+	sales AS shopSales
+-- 結合条件
+ON
+	-- 店舗IDを結合
+	shopTable.s_id = shopSales.s_id
+-- 取得条件
+WHERE
+	-- 売り上げが平均以下の場合
+	shopSales.s_value <
+	-- サブクエリ
+	(
+	-- 取得命令
+	SELECT
+		-- 売上平均
+		AVG(s_value)
+	-- 取得元
+	FROM 
+		-- 売上テーブル
+		sales
+	-- 取得条件
+	WHERE
+		-- 年月が2012-12の場合
+		s_date = '2012-12'
+	)
+	
+kensyu=# -- 取得命令
+kensyu=# SELECT
+kensyu-#        -- 店舗名カラム
+kensyu-#        shopTable.s_name,
+kensyu-#        -- 売上カラム
+kensyu-#        shopSales.s_value
+kensyu-# -- 取得元
+kensyu-# FROM
+kensyu-#        -- 店舗テーブル
+kensyu-#        shop AS shopTable
+kensyu-# -- 内部結合
+kensyu-# INNER JOIN
+kensyu-#        -- 月間売上テーブル
+kensyu-#        sales AS shopSales
+kensyu-# -- 結合条件
+kensyu-# ON
+kensyu-#        -- 店舗IDを結合
+kensyu-#        shopTable.s_id = shopSales.s_id
+kensyu-# -- 取得条件
+kensyu-# WHERE
+kensyu-#        -- 売り上げが平均以下の場合
+kensyu-#        shopSales.s_value <
+kensyu-#        -- サブクエリ
+kensyu-#        (
+kensyu(#        -- 取得命令
+kensyu(#        SELECT
+kensyu(#                -- 売上平均
+kensyu(#                AVG(s_value)
+kensyu(#        -- 取得元
+kensyu(#        FROM
+kensyu(#                -- 売上テーブル
+kensyu(#                sales
+kensyu(#        -- 取得条件
+kensyu(#        WHERE
+kensyu(#                -- 年月が2012-12の場合
+kensyu(#                s_date = '2012-12'
+kensyu(#        );
+    s_name    | s_value
+--------------+---------
+ 東桜町店     |    9861
+ 北花町東店   |   10456
+ 東桜町店     |    9975
+ 北花町駅前店 |   10142
+ 北花町東店   |   10124
+(5 行)
+
+テーブル全量
+kensyu=# select * from shop;
+ s_id  |    s_name
+-------+--------------
+ M0001 | 三吉町店
+ M0002 | 三吉町南店
+ H0001 | 東桜町店
+ K0001 | 北花町駅前店
+ K0002 | 北花町東店
+(5 行)
+
+kensyu=# select * from sales;
+ s_id  | s_date  | s_value
+-------+---------+---------
+ M0001 | 2012-12 |   11145
+ H0001 | 2012-12 |    9861
+ N0001 | 2012-12 |   11023
+ K0001 | 2012-12 |   11234
+ K0002 | 2012-12 |   10456
+ M0001 | 2012-11 |   10784
+ M0002 | 2012-11 |   12032
+ H0001 | 2012-11 |    9975
+ N0001 | 2012-11 |    9965
+ K0001 | 2012-11 |   10142
+ K0002 | 2012-11 |   10124
+(11 行)
