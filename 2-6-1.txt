@@ -34,11 +34,11 @@
 		-- 取得元
 		q.sex = '女'
 -- 結果の結合
-UNION
+UNION ALL
 	-- 取得命令
 	SELECT
 		-- 氏名（カナ）を結合して表示
-		e.f_name_kana || e.l_name_kana
+		e.l_name_kana || e.f_name_kana
 	-- 取得元
 	FROM
 		-- 社員テーブル
@@ -66,11 +66,11 @@ kensyu-#        WHERE
 kensyu-#                -- 取得元
 kensyu-#                q.sex = '女'
 kensyu-# -- 結果の結合
-kensyu-# UNION
+kensyu-# UNION ALL
 kensyu-#        -- 取得命令
 kensyu-#        SELECT
 kensyu-#                -- 氏名（カナ）を結合して表示
-kensyu-#                e.f_name_kana || e.l_name_kana
+kensyu-#                e.l_name_kana || e.f_name_kana
 kensyu-#        -- 取得元
 kensyu-#        FROM
 kensyu-#                -- 社員テーブル
@@ -86,23 +86,22 @@ kensyu-#                1 ASC
 kensyu-# ;
    name_kana
 ----------------
- アキコチカダ
  イノウエマリ
  ウエハラハルカ
  エモトシュウコ
  オノヒロミ
- カズミツムラ
- トモコサトウ
- ナミヤマダ
+ カワグチユウコ
+ サトウトモコ
+ シミズハルコ
+ タナカマユコ
+ チカダアキコ
+ ツムラカズミ
+ トガワヨシミ
+ ナカザワヤスヨ
  ネギシアユミ
- ハルコシミズ
- マユコタナカ
- ヤスヨナカザワ
- ユウコカワグチ
- ヨシミトガワ
- リエノガミ
+ ノガミリエ
+ ヤマダナミ
 (15 行)
-
 
 テーブル全量
 kensyu=# select * from quest;
