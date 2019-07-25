@@ -1,0 +1,57 @@
+所属部署テーブル(depart)に対して、以下のデータを挿入するためのSQL命令を記述してみましょう。
+
+項目	値
+所属部署コード	E03
+所属部署名	第三営業部
+
+-- 挿入命令
+INSERT INTO
+	-- 所属部署テーブル
+	depart
+-- 挿入値
+VALUES
+	(
+		-- 所属部署コード
+		'E03',
+		-- 所属部署名
+		'第三営業部'
+	)
+;
+
+kensyu=# -- 挿入命令
+kensyu=# INSERT INTO
+kensyu-#        -- 所属部署テーブル
+kensyu-#        depart
+kensyu-# -- 挿入値
+kensyu-# VALUES
+kensyu-#        (
+kensyu(#                -- 所属部署コード
+kensyu(#                'E03',
+kensyu(#                -- 所属部署名
+kensyu(#                '第三営業部'
+kensyu(#        )
+kensyu-# ;
+INSERT 0 1
+
+挿入結果
+kensyu=# select * from depart;
+ depart_id | depart_name
+-----------+-------------
+ S01       | 経営企画部
+ E01       | 第一営業部
+ E02       | 第二営業部
+ J01       | 人事部
+ S02       | 総務部
+ E03       | 第三営業部
+(6 行)
+
+テーブル全量
+kensyu=# select * from depart;
+ depart_id | depart_name
+-----------+-------------
+ S01       | 経営企画部
+ E01       | 第一営業部
+ E02       | 第二営業部
+ J01       | 人事部
+ S02       | 総務部
+(5 行)
